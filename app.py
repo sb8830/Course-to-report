@@ -7,7 +7,6 @@ st.set_page_config(page_title="Data Transformer", page_icon="📊", layout="wide
 st.title("📊 Data Transformer")
 st.caption("Convert long-format to wide-format student course enrollment data")
 
-# Course durations in days
 COURSE_DURATIONS = {
     "Power Of Trading & Investing Combo Course": 45,
     "Power Of Equity Market Strategy Course (Offline)": 45,
@@ -32,7 +31,7 @@ if uploaded_file:
     st.success(f"Loaded {len(df)} records")
 
     grouped = df.groupby(["student id", "insignia", "insignianame"], sort=False)
-    course_fields = ["registration_date", "coursename", "trainername", "coursecode", "startdate", "coursetype", "expiry_date"]
+    course_fields = ["coursename", "trainername", "coursecode", "startdate", "coursetype"]
     
     rows = []
     max_courses = 0
@@ -87,4 +86,4 @@ if uploaded_file:
         mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
     )
 else:
-    st.info("Upload an Excel file with columns: coursecode, startdate, registration_date, expiry_date, name, student id, coursename, coursetype, trainername, insignia, insignianame")
+    st.info("Upload an Excel file with columns: coursecode, startdate, name, student id, coursename, coursetype, trainername, insignia, insignianame")
